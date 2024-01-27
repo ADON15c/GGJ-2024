@@ -1,62 +1,105 @@
-[gd_scene load_steps=2 format=3 uid="uid://c6gfch3ytf4u5"]
+[gd_scene load_steps=8 format=3 uid="uid://c6gfch3ytf4u5"]
 
 [ext_resource type="Script" path="res://Scenes/Astronaut/Astronaut.gd" id="1_ophbu"]
+[ext_resource type="Texture2D" uid="uid://c6x834mp6pxn5" path="res://Assets/Sprites/Astronaut.png" id="2_1hdqr"]
+[ext_resource type="Texture2D" uid="uid://cikdyej285fo1" path="res://Assets/Sprites/AstronautSpriteSheet.png" id="3_lnqvk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aukkk"]
+atlas = ExtResource("3_lnqvk")
+region = Rect2(152, 0, 64, 62)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pj6b7"]
+atlas = ExtResource("3_lnqvk")
+region = Rect2(0, 0, 28, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jlwl7"]
+atlas = ExtResource("3_lnqvk")
+region = Rect2(96, 0, 17, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_482tb"]
+atlas = ExtResource("3_lnqvk")
+region = Rect2(113, 0, 11, 27)
 
 [node name="Astronaut" type="Node2D"]
 script = ExtResource("1_ophbu")
 
-[node name="Body" type="Polygon2D" parent="."]
+[node name="OldBody" type="Polygon2D" parent="."]
+visible = false
 polygon = PackedVector2Array(-24, 32, 24, 32, 24, -40, -24, -40)
 
-[node name="Head" type="Polygon2D" parent="Body"]
+[node name="Head" type="Polygon2D" parent="OldBody"]
 position = Vector2(0, -48)
 color = Color(0.603922, 0.603922, 0.603922, 1)
 polygon = PackedVector2Array(-16, 16, 16, 16, 16, -16, -16, -16)
 
-[node name="Left Arm" type="Polygon2D" parent="Body"]
+[node name="Left Arm" type="Polygon2D" parent="OldBody"]
 position = Vector2(-26, -28)
 color = Color(0.658824, 1, 0.733333, 1)
 offset = Vector2(-8, 6)
 polygon = PackedVector2Array(14, -10, 2, -10, 2, 14, 14, 14)
 
-[node name="Left Lower Arm" type="Polygon2D" parent="Body/Left Arm"]
+[node name="Left Lower Arm" type="Polygon2D" parent="OldBody/Left Arm"]
 position = Vector2(0, 20)
 color = Color(0.411765, 1, 0.537255, 1)
 offset = Vector2(-2, -16)
 polygon = PackedVector2Array(8, 32, -4, 32, -4, 12, 8, 12)
 
-[node name="Right Arm" type="Polygon2D" parent="Body"]
+[node name="Right Arm" type="Polygon2D" parent="OldBody"]
 position = Vector2(26, -28)
 color = Color(1, 0.678431, 0.678431, 1)
 offset = Vector2(-8, 6)
 polygon = PackedVector2Array(14, -10, 2, -10, 2, 14, 14, 14)
 
-[node name="Right Lower Arm" type="Polygon2D" parent="Body/Right Arm"]
+[node name="Right Lower Arm" type="Polygon2D" parent="OldBody/Right Arm"]
 position = Vector2(0, 20)
 color = Color(1, 0.490196, 0.490196, 1)
 offset = Vector2(-2, -16)
 polygon = PackedVector2Array(8, 32, -4, 32, -4, 12, 8, 12)
 
-[node name="Left Leg" type="Polygon2D" parent="Body"]
+[node name="Left Leg" type="Polygon2D" parent="OldBody"]
 position = Vector2(-10, 32)
 color = Color(0.658824, 1, 0.733333, 1)
 offset = Vector2(-6, 8)
 polygon = PackedVector2Array(12, -12, 0, -12, 0, 20, 12, 20)
 
-[node name="Left Calf" type="Polygon2D" parent="Body/Left Leg"]
+[node name="Left Calf" type="Polygon2D" parent="OldBody/Left Leg"]
 position = Vector2(0, 28)
 color = Color(0.411765, 1, 0.537255, 1)
 offset = Vector2(-6, 8)
 polygon = PackedVector2Array(12, -12, 0, -12, 0, 20, 12, 20)
 
-[node name="Right Leg" type="Polygon2D" parent="Body"]
+[node name="Right Leg" type="Polygon2D" parent="OldBody"]
 position = Vector2(10, 32)
 color = Color(1, 0.678431, 0.678431, 1)
 offset = Vector2(-6, 8)
 polygon = PackedVector2Array(12, -12, 0, -12, 0, 20, 12, 20)
 
-[node name="Right Calf" type="Polygon2D" parent="Body/Right Leg"]
+[node name="Right Calf" type="Polygon2D" parent="OldBody/Right Leg"]
 position = Vector2(0, 28)
 color = Color(1, 0.490196, 0.490196, 1)
 offset = Vector2(-6, 8)
 polygon = PackedVector2Array(12, -12, 0, -12, 0, 20, 12, 20)
+
+[node name="FullBody" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("2_1hdqr")
+
+[node name="Body" type="Sprite2D" parent="."]
+position = Vector2(0, -15)
+texture = SubResource("AtlasTexture_aukkk")
+
+[node name="Head" type="Sprite2D" parent="Body"]
+z_index = -1
+position = Vector2(0, -33)
+texture = SubResource("AtlasTexture_pj6b7")
+
+[node name="Left Arm" type="Sprite2D" parent="Body"]
+z_index = -1
+position = Vector2(-23, -19)
+texture = SubResource("AtlasTexture_jlwl7")
+offset = Vector2(-0.5, 8.5)
+
+[node name="Left Lower Arm" type="Sprite2D" parent="Body/Left Arm"]
+position = Vector2(-1.5, 24)
+texture = SubResource("AtlasTexture_482tb")
+offset = Vector2(0, 8.5)
