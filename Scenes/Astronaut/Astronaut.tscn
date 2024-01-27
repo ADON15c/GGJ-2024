@@ -1,0 +1,62 @@
+[gd_scene load_steps=2 format=3 uid="uid://c6gfch3ytf4u5"]
+
+[ext_resource type="Script" path="res://Scenes/Astronaut/Astronaut.gd" id="1_ophbu"]
+
+[node name="Astronaut" type="Node2D"]
+script = ExtResource("1_ophbu")
+
+[node name="Body" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-24, 32, 24, 32, 24, -40, -24, -40)
+
+[node name="Head" type="Polygon2D" parent="Body"]
+position = Vector2(0, -48)
+color = Color(0.603922, 0.603922, 0.603922, 1)
+polygon = PackedVector2Array(-16, 16, 16, 16, 16, -16, -16, -16)
+
+[node name="Left Arm" type="Polygon2D" parent="Body"]
+position = Vector2(-26, -28)
+color = Color(0.658824, 1, 0.733333, 1)
+offset = Vector2(-8, 6)
+polygon = PackedVector2Array(14, -10, 2, -10, 2, 14, 14, 14)
+
+[node name="Left Lower Arm" type="Polygon2D" parent="Body/Left Arm"]
+position = Vector2(0, 20)
+color = Color(0.411765, 1, 0.537255, 1)
+offset = Vector2(-2, -16)
+polygon = PackedVector2Array(8, 32, -4, 32, -4, 12, 8, 12)
+
+[node name="Right Arm" type="Polygon2D" parent="Body"]
+position = Vector2(26, -28)
+color = Color(1, 0.678431, 0.678431, 1)
+offset = Vector2(-8, 6)
+polygon = PackedVector2Array(14, -10, 2, -10, 2, 14, 14, 14)
+
+[node name="Right Lower Arm" type="Polygon2D" parent="Body/Right Arm"]
+position = Vector2(0, 20)
+color = Color(1, 0.490196, 0.490196, 1)
+offset = Vector2(-2, -16)
+polygon = PackedVector2Array(8, 32, -4, 32, -4, 12, 8, 12)
+
+[node name="Left Leg" type="Polygon2D" parent="Body"]
+position = Vector2(-10, 32)
+color = Color(0.658824, 1, 0.733333, 1)
+offset = Vector2(-6, 8)
+polygon = PackedVector2Array(12, -12, 0, -12, 0, 20, 12, 20)
+
+[node name="Left Calf" type="Polygon2D" parent="Body/Left Leg"]
+position = Vector2(0, 28)
+color = Color(0.411765, 1, 0.537255, 1)
+offset = Vector2(-6, 8)
+polygon = PackedVector2Array(12, -12, 0, -12, 0, 20, 12, 20)
+
+[node name="Right Leg" type="Polygon2D" parent="Body"]
+position = Vector2(10, 32)
+color = Color(1, 0.678431, 0.678431, 1)
+offset = Vector2(-6, 8)
+polygon = PackedVector2Array(12, -12, 0, -12, 0, 20, 12, 20)
+
+[node name="Right Calf" type="Polygon2D" parent="Body/Right Leg"]
+position = Vector2(0, 28)
+color = Color(1, 0.490196, 0.490196, 1)
+offset = Vector2(-6, 8)
+polygon = PackedVector2Array(12, -12, 0, -12, 0, 20, 12, 20)
