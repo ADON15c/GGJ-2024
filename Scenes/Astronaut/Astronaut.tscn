@@ -1,8 +1,73 @@
-[gd_scene load_steps=14 format=3 uid="uid://c6gfch3ytf4u5"]
+[gd_scene load_steps=23 format=3 uid="uid://c6gfch3ytf4u5"]
 
 [ext_resource type="Script" path="res://Scenes/Astronaut/Astronaut.gd" id="1_ophbu"]
 [ext_resource type="Texture2D" uid="uid://c6x834mp6pxn5" path="res://Assets/Sprites/Astronaut.png" id="2_1hdqr"]
+[ext_resource type="Script" path="res://Custom Resources/limb.gd" id="2_jq2wh"]
 [ext_resource type="Texture2D" uid="uid://cikdyej285fo1" path="res://Assets/Sprites/AstronautSpriteSheet.png" id="3_lnqvk"]
+
+[sub_resource type="Resource" id="Resource_avli2"]
+script = ExtResource("2_jq2wh")
+name = "right_arm"
+sprite_path = NodePath("")
+constraint_lower = 0.0
+constraint_upper = 0.0
+isRight = true
+
+[sub_resource type="Resource" id="Resource_i7tg7"]
+script = ExtResource("2_jq2wh")
+name = "left_arm"
+sprite_path = NodePath("")
+constraint_lower = 0.0
+constraint_upper = 0.0
+isRight = false
+
+[sub_resource type="Resource" id="Resource_cd5a7"]
+script = ExtResource("2_jq2wh")
+name = "right_lower_arm"
+sprite_path = NodePath("")
+constraint_lower = 0.0
+constraint_upper = 0.0
+isRight = true
+
+[sub_resource type="Resource" id="Resource_nc2qw"]
+script = ExtResource("2_jq2wh")
+name = "left_lower_arm"
+sprite_path = NodePath("")
+constraint_lower = 0.0
+constraint_upper = 0.0
+isRight = false
+
+[sub_resource type="Resource" id="Resource_bgw08"]
+script = ExtResource("2_jq2wh")
+name = "right_leg"
+sprite_path = NodePath("")
+constraint_lower = 0.0
+constraint_upper = 0.0
+isRight = true
+
+[sub_resource type="Resource" id="Resource_hehhn"]
+script = ExtResource("2_jq2wh")
+name = "left_leg"
+sprite_path = NodePath("")
+constraint_lower = 0.0
+constraint_upper = 0.0
+isRight = false
+
+[sub_resource type="Resource" id="Resource_pwdma"]
+script = ExtResource("2_jq2wh")
+name = "right_lower_leg"
+sprite_path = NodePath("")
+constraint_lower = 0.0
+constraint_upper = 0.0
+isRight = true
+
+[sub_resource type="Resource" id="Resource_ap266"]
+script = ExtResource("2_jq2wh")
+name = "left_lower_leg"
+sprite_path = NodePath("")
+constraint_lower = 0.0
+constraint_upper = 0.0
+isRight = false
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_aukkk"]
 atlas = ExtResource("3_lnqvk")
@@ -46,6 +111,7 @@ region = Rect2(79, 0, 17, 26)
 
 [node name="Astronaut" type="Node2D"]
 script = ExtResource("1_ophbu")
+limb_resources = Array[ExtResource("2_jq2wh")]([SubResource("Resource_avli2"), SubResource("Resource_i7tg7"), SubResource("Resource_cd5a7"), SubResource("Resource_nc2qw"), SubResource("Resource_bgw08"), SubResource("Resource_hehhn"), SubResource("Resource_pwdma"), SubResource("Resource_ap266")])
 
 [node name="FullBody" type="Sprite2D" parent="."]
 visible = false

@@ -1,5 +1,12 @@
 extends Node2D
 
+const ARM_CONSTRAINT : Vector2 = Vector2(0, 225)
+const LOWER_ARM_CONSTRAINT : Vector2 = Vector2(-135, 135)
+const LEG_CONSTRAINT : Vector2 = Vector2(-20, 65)
+const LOWER_LEG_CONSTRAINT : Vector2 = Vector2(-90, 90)
+const BODY_CONSTRAINT : Vector2 = Vector2(-30, 30)
+
+@onready var body : Sprite2D = $"Body"
 @onready var left_arm : Sprite2D = $"Body/Left Arm"
 @onready var left_lower_arm : Sprite2D = $"Body/Left Arm/Lower"
 @onready var right_arm : Sprite2D = $"Body/Right Arm"
@@ -18,34 +25,18 @@ extends Node2D
 @onready var lower_limbs : Array[Sprite2D] = lower_arms + lower_legs
 @onready var all_limbs : Array[Sprite2D] = limbs + lower_limbs
 
-var step = 0.0;
-const ARM_CONSTRAINT : Vector2 = Vector2(0, 225)
-const LOWER_ARM_CONSTRAINT : Vector2 = Vector2(-135, 135)
-const LEG_CONSTRAINT : Vector2 = Vector2(-20, 65)
-const LOWER_LEG_CONSTRAINT : Vector2 = Vector2(-90, 90)
+@export var limb_resources : Array[Limb]
+
 var selected_limb_idx : int = 0
 
+
+
 func _process(delta):
-	step += delta * 0.5;
-	for limb : Sprite2D in limbs:
-		limb.transform = limb.transform.rotated_local(sin(step));
-	for lower_limb : Sprite2D in lower_limbs:
-		lower_limb.transform = lower_limb.transform.rotated_local(cos(step));
-		#lower_limb.transform = lower_limb.transform.rotated_local(delta)
-	transform = transform.rotated_local(tan(step))
-	
-	#step = delta * 0.5;
-	#for limb : Sprite2D in limbs:
-		#limb.transform = limb.transform.rotated_local(step);
-	#for lower_limb : Sprite2D in lower_limbs:
-		#lower_limb.transform = lower_limb.transform.rotated_local(step);
-		##lower_limb.transform = lower_limb.transform.rotated_local(delta)
-	#transform = transform.rotated_local(step)
-	
-	if Input.is_action_pressed("ui_left"):
-		all_limbs[selected_limb_idx].transform = all_limbs[selected_limb_idx].transform.rotated_local(-delta*10 );
-	if Input.is_action_pressed("ui_right"):
-		all_limbs[selected_limb_idx].transform = all_limbs[selected_limb_idx].transform.rotated_local(delta*10);
+	pass
+	#if Input.is_action_pressed("ui_left"):
+		#all_limbs[selected_limb_idx].transform = all_limbs[selected_limb_idx].transform.rotated_local(-delta*10 );
+	#if Input.is_action_pressed("ui_right"):
+		#all_limbs[selected_limb_idx].transform = all_limbs[selected_limb_idx].transform.rotated_local(delta*10);
 	
 
 
@@ -53,29 +44,32 @@ func _input(event : InputEvent):
 	if event is InputEventKey and event.is_pressed() and !event.is_echo():
 		match event.keycode:
 			KEY_SPACE:
-				select_limb((selected_limb_idx + 1) % all_limbs.size())
-			KEY_LEFT:
-				all_limbs[selected_limb_idx]
-			KEY_RIGHT:
-				all_limbs[selected_limb_idx]
+				new_pose(0.25)
+				#select_limb((selected_limb_idx + 1) % all_limbs.size())
+			#KEY_LEFT:
+				#all_limbs[selected_limb_idx]
+			#KEY_RIGHT:
+				#all_limbs[selected_limb_idx]
 
-func select_limb(idx : int):
-	all_limbs[selected_limb_idx].self_modulate = Color.WHITE
-	selected_limb_idx = idx
-	all_limbs[selected_limb_idx].self_modulate = Color.BLUE
 
-func new_pose(t : float):
-	var animation : Animation = Animation.new()
-	var track_index = animation.add_track(Animation.TYPE_VALUE)
-	animation.track_set_path(track_index, "Body/Left Arm:rotation_degrees")
-	animation.track_insert_key(track_index, 0.0, 0)
-	animation.track_insert_key(track_index, t, 100)
+func new_pose(dt : float):
+	move_limb(body, randf_range(BODY_CONSTRAINT.x, BODY_CONSTRAINT.y), dt)
 	
-	left_arm.rotation_degrees = randf_range(ARM_CONSTRAINT.x, ARM_CONSTRAINT.y)
-	right_arm.rotation_degrees = randf_range(-ARM_CONSTRAINT.x, -ARM_CONSTRAINT.y)
-	left_lower_arm.rotation_degrees = randf_range(LOWER_ARM_CONSTRAINT.x, LOWER_ARM_CONSTRAINT.y)
-	right_lower_arm.rotation_degrees = randf_range(-LOWER_ARM_CONSTRAINT.x, -LOWER_ARM_CONSTRAINT.y)
-	left_leg.rotation_degrees = randf_range(LEG_CONSTRAINT.x, LEG_CONSTRAINT.y)
-	right_leg.rotation_degrees = randf_range(-LEG_CONSTRAINT.x, -LEG_CONSTRAINT.y)
-	left_lower_leg.rotation_degrees = randf_range(LOWER_LEG_CONSTRAINT.x, LOWER_LEG_CONSTRAINT.y)
-	right_lower_leg.rotation_degrees = randf_range(-LOWER_LEG_CONSTRAINT.x, -LOWER_LEG_CONSTRAINT.y)
+	move_limb(left_arm, randf_range(ARM_CONSTRAINT.x, ARM_CONSTRAINT.y), dt)
+	move_limb(right_arm, randf_range(-ARM_CONSTRAINT.x, -ARM_CONSTRAINT.y), dt)
+	move_limb(left_lower_arm, randf_range(LOWER_ARM_CONSTRAINT.x, LOWER_ARM_CONSTRAINT.y), dt)
+	move_limb(right_lower_arm, randf_range(-LOWER_ARM_CONSTRAINT.x, -LOWER_ARM_CONSTRAINT.y), dt)
+	move_limb(left_leg, randf_range(LEG_CONSTRAINT.x, LEG_CONSTRAINT.y), dt)
+	move_limb(right_leg, randf_range(-LEG_CONSTRAINT.x, -LEG_CONSTRAINT.y), dt)
+	move_limb(left_lower_leg, randf_range(LOWER_LEG_CONSTRAINT.x, LOWER_LEG_CONSTRAINT.y), dt)
+	move_limb(right_lower_leg, randf_range(-LOWER_LEG_CONSTRAINT.x, -LOWER_LEG_CONSTRAINT.y), dt)
+
+
+func move_limb(limb : Sprite2D, new_rotation : float, dt : float):
+	create_tween().tween_property(limb, "rotation_degrees", new_rotation, dt).set_trans(Tween.TRANS_CUBIC)
+
+
+#func select_limb(idx : int):
+	#all_limbs[selected_limb_idx].self_modulate = Color.WHITE
+	#selected_limb_idx = idx
+	#all_limbs[selected_limb_idx].self_modulate = Color.BLUE
