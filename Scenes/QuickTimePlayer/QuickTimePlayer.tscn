@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bssrbj1155wrh"]
+
+[ext_resource type="Script" path="res://Scenes/QuickTimePlayer/QuickTimePlayer.gd" id="1_fgdn7"]
+
+[node name="QuickTimePlayer" type="Node2D"]
+script = ExtResource("1_fgdn7")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "awesome"

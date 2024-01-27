@@ -1,10 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://dak8hh4x7eg3h"]
+[gd_scene load_steps=5 format=3 uid="uid://dak8hh4x7eg3h"]
 
+[ext_resource type="PackedScene" uid="uid://bssrbj1155wrh" path="res://Scenes/QuickTimePlayer/QuickTimePlayer.tscn" id="1_s1w0o"]
 [ext_resource type="PackedScene" uid="uid://dxhbyk5vrbcg8" path="res://Scenes/Player/Player.tscn" id="1_yt6kv"]
 [ext_resource type="TileSet" uid="uid://bkwuhxwjnsus3" path="res://Resources/Tilesets/ground.tres" id="2_da523"]
 [ext_resource type="PackedScene" uid="uid://c6gfch3ytf4u5" path="res://Scenes/Astronaut/Astronaut.tscn" id="3_1lj40"]
 
 [node name="Game" type="Node2D"]
+
+[node name="QuickTimePlayer" parent="." instance=ExtResource("1_s1w0o")]
+position = Vector2(0, 50)
 
 [node name="Player" parent="." instance=ExtResource("1_yt6kv")]
 position = Vector2(314, 227)
