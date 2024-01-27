@@ -19,6 +19,10 @@ extends Node2D
 @onready var all_limbs : Array[Sprite2D] = limbs + lower_limbs
 
 var step = 0.0;
+const ARM_CONSTRAINT : Vector2 = Vector2(0, 225)
+const LOWER_ARM_CONSTRAINT : Vector2 = Vector2(-135, 135)
+const LEG_CONSTRAINT : Vector2 = Vector2(-20, 65)
+const LOWER_LEG_CONSTRAINT : Vector2 = Vector2(-90, 90)
 var selected_limb_idx : int = 0
 
 func _process(delta):
@@ -59,3 +63,19 @@ func select_limb(idx : int):
 	all_limbs[selected_limb_idx].self_modulate = Color.WHITE
 	selected_limb_idx = idx
 	all_limbs[selected_limb_idx].self_modulate = Color.BLUE
+
+func new_pose(t : float):
+	var animation : Animation = Animation.new()
+	var track_index = animation.add_track(Animation.TYPE_VALUE)
+	animation.track_set_path(track_index, "Body/Left Arm:rotation_degrees")
+	animation.track_insert_key(track_index, 0.0, 0)
+	animation.track_insert_key(track_index, t, 100)
+	
+	left_arm.rotation_degrees = randf_range(ARM_CONSTRAINT.x, ARM_CONSTRAINT.y)
+	right_arm.rotation_degrees = randf_range(-ARM_CONSTRAINT.x, -ARM_CONSTRAINT.y)
+	left_lower_arm.rotation_degrees = randf_range(LOWER_ARM_CONSTRAINT.x, LOWER_ARM_CONSTRAINT.y)
+	right_lower_arm.rotation_degrees = randf_range(-LOWER_ARM_CONSTRAINT.x, -LOWER_ARM_CONSTRAINT.y)
+	left_leg.rotation_degrees = randf_range(LEG_CONSTRAINT.x, LEG_CONSTRAINT.y)
+	right_leg.rotation_degrees = randf_range(-LEG_CONSTRAINT.x, -LEG_CONSTRAINT.y)
+	left_lower_leg.rotation_degrees = randf_range(LOWER_LEG_CONSTRAINT.x, LOWER_LEG_CONSTRAINT.y)
+	right_lower_leg.rotation_degrees = randf_range(-LOWER_LEG_CONSTRAINT.x, -LOWER_LEG_CONSTRAINT.y)
