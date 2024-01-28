@@ -12,5 +12,5 @@ position = Vector2(250, 0)
 position = Vector2(-250, 0)
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 10.0
+wait_time = 8.0
 autostart = true

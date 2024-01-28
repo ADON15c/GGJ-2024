@@ -1,5 +1,6 @@
 extends Node
 
+@onready var game_state : GameState = get_node("/root/GameState")
 
 const pose_scene : PackedScene = preload("res://Scenes/Pose/Pose.tscn")
 
@@ -21,7 +22,7 @@ func _ready():
 
 func _process(delta):
 	for pose in poses:
-		pose.pos += delta/20
+		pose.pos += delta/ max(20 - (game_state.score/3), 12)
 
 
 func _input(event):
@@ -61,6 +62,7 @@ func success(pose):
 	if poses.size() >= 1:
 		poses[0]._on_made_available();
 	pose_success.emit();
+	$Timer.wait_time = max($Timer.wait_time - (game_state.score/4), 4)
 
 func failure():
 	poses.remove_at(0)
