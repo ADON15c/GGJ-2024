@@ -10,7 +10,6 @@ var good = true;
 var current_pose : Vector4i:
 	set(value):
 		current_pose = value
-		$Label.text = str(current_pose.x) + "," + str(current_pose.y) + "," + str(current_pose.z) + "," + str(current_pose.w)
 		changed_pose()
 
 signal pose_changed(new_pose : Vector4i)
