@@ -20,7 +20,6 @@ signal failed
 
 
 func _ready():
-	print(pose)
 	$Astronaut.set_pose(pose, 0.1)
 	pos = pos
 
