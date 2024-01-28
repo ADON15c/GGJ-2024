@@ -3,31 +3,26 @@
 [ext_resource type="Script" path="res://Scenes/QuickTimePlayer/QuickTimePlayer.gd" id="1_fgdn7"]
 [ext_resource type="FontFile" uid="uid://c0hd51nplijps" path="res://Assets/Fonts/PeaberryBase.woff" id="2_200u5"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_wme7w"]
+[sub_resource type="LabelSettings" id="LabelSettings_wucy4"]
 font = ExtResource("2_200u5")
 
 [node name="QuickTimePlayer" type="Node2D"]
 script = ExtResource("1_fgdn7")
-
-[node name="Label" type="Label" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -37.0
-offset_top = -11.5
-offset_right = 37.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "L M N O P Q R S T U V W X Y Z"
-label_settings = SubResource("LabelSettings_wme7w")
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="Letter Start Marker" type="Node2D" parent="."]
 position = Vector2(250, 0)
 
 [node name="Letter End Marker" type="Node2D" parent="."]
 position = Vector2(-250, 0)
+
+[node name="Label" type="Label" parent="."]
+offset_left = -22.0
+offset_top = -11.0
+offset_right = 28.0
+offset_bottom = 12.0
+text = "Empty"
+label_settings = SubResource("LabelSettings_wucy4")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 4.0
+autostart = true

@@ -1,12 +1,11 @@
 extends Node2D
-class_name Letter
+class_name Pose
 
-@export var letter : String = 'A'
+@export var pose : Vector4i
 @export var start : Vector2
 @export var end : Vector2
 @export var fail_pos : float
 
-@onready var texture : AtlasTexture = $Sprite2D.texture
 
 var pos : float:
 	set(value):
@@ -21,11 +20,8 @@ signal failed
 
 
 func _ready():
-	texture.region.position = Vector2((get_unicode() - 65) * 32, 0)
-
-func get_unicode():
-	return letter.to_ascii_buffer().decode_u8(0)
-
+	$Label.text = str(pose.x) + "," + str(pose.y) + "," + str(pose.z) + "," + str(pose.w)
+	pos = pos
 
 func hit():
 	success.emit()
