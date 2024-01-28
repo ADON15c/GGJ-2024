@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://qnje3p1fnjrw"]
+
+[ext_resource type="Script" path="res://Scenes/Health/Health.gd" id="1_30vv5"]
+[ext_resource type="Texture2D" uid="uid://c88gi5xu1erom" path="res://Assets/Sprites/Hearts.png" id="2_syfps"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yj068"]
+atlas = ExtResource("2_syfps")
+region = Rect2(0, 0, 16, 16)
+
+[node name="Health" type="Node2D"]
+script = ExtResource("1_30vv5")
+
+[node name="Image" type="Sprite2D" parent="."]
+z_index = 16
+texture = SubResource("AtlasTexture_yj068")
