@@ -1,0 +1,116 @@
+[gd_scene load_steps=12 format=3 uid="uid://dwpg8a0x3yw0"]
+
+[ext_resource type="Texture2D" uid="uid://bff05m2r8vib5" path="res://Assets/Sprites/Background.png" id="1_7i46s"]
+[ext_resource type="Script" path="res://Scenes/Intro/Intro.gd" id="1_v04y7"]
+[ext_resource type="Texture2D" uid="uid://dre87dgyc3eto" path="res://Assets/Sprites/Moon.png" id="2_js58i"]
+[ext_resource type="PackedScene" uid="uid://c6gfch3ytf4u5" path="res://Scenes/Astronaut/Astronaut.tscn" id="3_4kvbu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t2rij"]
+atlas = ExtResource("2_js58i")
+region = Rect2(0, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hsaby"]
+atlas = ExtResource("2_js58i")
+region = Rect2(640, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o0e1m"]
+atlas = ExtResource("2_js58i")
+region = Rect2(1280, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lg2ur"]
+atlas = ExtResource("2_js58i")
+region = Rect2(1920, 0, 640, 360)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4nxwe"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t2rij")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hsaby")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o0e1m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lg2ur")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_jliya"]
+resource_name = "Intro"
+length = 2.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Astronaut:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(320, 500), Vector2(320, 300)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Moon:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(320, 0), Vector2(320, 180)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(2.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"change_scene"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1hv01"]
+_data = {
+"Intro": SubResource("Animation_jliya")
+}
+
+[node name="Intro" type="Node2D"]
+script = ExtResource("1_v04y7")
+
+[node name="Space" type="Sprite2D" parent="."]
+z_index = -100
+position = Vector2(320, 180)
+texture = ExtResource("1_7i46s")
+
+[node name="Moon" type="AnimatedSprite2D" parent="."]
+position = Vector2(320, 180)
+sprite_frames = SubResource("SpriteFrames_4nxwe")
+
+[node name="Astronaut" parent="." instance=ExtResource("3_4kvbu")]
+z_index = 3
+position = Vector2(320, 300)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_1hv01")
+}
+autoplay = "Intro"

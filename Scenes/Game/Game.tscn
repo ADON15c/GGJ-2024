@@ -80,7 +80,7 @@ position = Vector2(320, 200)
 
 [node name="Astronaut" parent="." instance=ExtResource("3_1lj40")]
 z_index = 3
-position = Vector2(321, 301)
+position = Vector2(320, 300)
 
 [connection signal="pose_failure" from="QuickTimePlayer" to="Score" method="_on_fail"]
 [connection signal="pose_success" from="QuickTimePlayer" to="Score" method="_on_success"]
