@@ -21,7 +21,8 @@ func next_move():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	var s = $Label;
-	s.text = "test %s: %s - %s" % [size, keys.reduce(func(i, accum): return "%s %s" % [i, accum], ""), good];
+	#s.text = "test %s: %s - %s" % [size, keys.reduce(func(i, accum): return "%s %s" % [i, accum], ""), good];
+	s.text = "%s" % [keys.reduce(func(i, accum): return "%s %s" % [i, accum])]
 	pass
 
 func _input(event):
@@ -34,6 +35,9 @@ func _input(event):
 			key_index += 1;
 			if key_index >= keys.size(): 
 				next_move();
+				move_made.emit();
 			good = true;
 		else:
 			good = false; # :(
+
+signal move_made;

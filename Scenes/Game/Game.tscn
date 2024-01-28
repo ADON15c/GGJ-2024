@@ -7,11 +7,13 @@
 [node name="Game" type="Node2D"]
 
 [node name="QuickTimePlayer" parent="." instance=ExtResource("1_s1w0o")]
-position = Vector2(0, 50)
+position = Vector2(320, 200)
 
 [node name="Astronaut" parent="." instance=ExtResource("3_1lj40")]
-position = Vector2(321, 287)
+position = Vector2(321, 301)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(318, 182)
 texture = ExtResource("3_kugsw")
+
+[connection signal="move_made" from="QuickTimePlayer" to="Astronaut" method="_on_quick_time_player_move_made"]

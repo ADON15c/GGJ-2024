@@ -29,17 +29,6 @@ const BODY_CONSTRAINT : Vector2 = Vector2(-30, 30)
 
 var selected_limb_idx : int = 0
 
-
-
-func _process(delta):
-	pass
-	#if Input.is_action_pressed("ui_left"):
-		#all_limbs[selected_limb_idx].transform = all_limbs[selected_limb_idx].transform.rotated_local(-delta*10 );
-	#if Input.is_action_pressed("ui_right"):
-		#all_limbs[selected_limb_idx].transform = all_limbs[selected_limb_idx].transform.rotated_local(delta*10);
-	
-
-
 func _input(event : InputEvent):
 	if event is InputEventKey and event.is_pressed() and !event.is_echo():
 		match event.keycode:
@@ -50,7 +39,6 @@ func _input(event : InputEvent):
 				#all_limbs[selected_limb_idx]
 			#KEY_RIGHT:
 				#all_limbs[selected_limb_idx]
-
 
 func new_pose(dt : float):
 	move_limb(body, randf_range(BODY_CONSTRAINT.x, BODY_CONSTRAINT.y), dt)
@@ -64,12 +52,8 @@ func new_pose(dt : float):
 	move_limb(left_lower_leg, randf_range(LOWER_LEG_CONSTRAINT.x, LOWER_LEG_CONSTRAINT.y), dt)
 	move_limb(right_lower_leg, randf_range(-LOWER_LEG_CONSTRAINT.x, -LOWER_LEG_CONSTRAINT.y), dt)
 
-
 func move_limb(limb : Sprite2D, new_rotation : float, dt : float):
 	create_tween().tween_property(limb, "rotation_degrees", new_rotation, dt).set_trans(Tween.TRANS_CUBIC)
 
-
-#func select_limb(idx : int):
-	#all_limbs[selected_limb_idx].self_modulate = Color.WHITE
-	#selected_limb_idx = idx
-	#all_limbs[selected_limb_idx].self_modulate = Color.BLUE
+func _on_quick_time_player_move_made():
+	new_pose(1)

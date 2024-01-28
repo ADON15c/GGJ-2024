@@ -95,7 +95,7 @@ region = Rect2(141, 0, 11, 27)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wlvkj"]
 atlas = ExtResource("3_lnqvk")
-region = Rect2(28, 0, 17, 32)
+region = Rect2(28, 0, 17, 26)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_15l4f"]
 atlas = ExtResource("3_lnqvk")
@@ -103,7 +103,7 @@ region = Rect2(45, 0, 17, 26)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p0l1b"]
 atlas = ExtResource("3_lnqvk")
-region = Rect2(62, 0, 17, 32)
+region = Rect2(62, 0, 17, 26)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dlx6n"]
 atlas = ExtResource("3_lnqvk")
@@ -156,7 +156,7 @@ offset = Vector2(0, 8.5)
 z_index = -3
 position = Vector2(-11.5, 30)
 texture = SubResource("AtlasTexture_wlvkj")
-offset = Vector2(0, 13)
+offset = Vector2(0, 10)
 
 [node name="Lower" type="Sprite2D" parent="Body/Left Leg"]
 z_index = 1
@@ -168,7 +168,7 @@ offset = Vector2(0, 10)
 z_index = -3
 position = Vector2(11.5, 30)
 texture = SubResource("AtlasTexture_p0l1b")
-offset = Vector2(0, 13)
+offset = Vector2(0, 10)
 
 [node name="Lower" type="Sprite2D" parent="Body/Right Leg"]
 z_index = 1
