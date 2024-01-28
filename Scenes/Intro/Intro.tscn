@@ -46,32 +46,32 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Animation" id="Animation_jliya"]
+[sub_resource type="Animation" id="Animation_qah4g"]
 resource_name = "Intro"
 length = 2.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Astronaut:position")
+tracks/0/path = NodePath("Moon:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(320, 500), Vector2(320, 300)]
+"values": [Vector2(320, 0), Vector2(320, 180)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Moon:position")
+tracks/1/path = NodePath("Astronaut:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(320, 0), Vector2(320, 180)]
+"values": [Vector2(320, 500), Vector2(320, 300)]
 }
 tracks/2/type = "method"
 tracks/2/imported = false
@@ -88,9 +88,9 @@ tracks/2/keys = {
 }]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_1hv01"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qmp3x"]
 _data = {
-"Intro": SubResource("Animation_jliya")
+"Intro": SubResource("Animation_qah4g")
 }
 
 [node name="Intro" type="Node2D"]
@@ -102,15 +102,15 @@ position = Vector2(320, 180)
 texture = ExtResource("1_7i46s")
 
 [node name="Moon" type="AnimatedSprite2D" parent="."]
-position = Vector2(320, 180)
+position = Vector2(320, 0)
 sprite_frames = SubResource("SpriteFrames_4nxwe")
 
 [node name="Astronaut" parent="." instance=ExtResource("3_4kvbu")]
 z_index = 3
-position = Vector2(320, 300)
+position = Vector2(320, 500)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_1hv01")
+"": SubResource("AnimationLibrary_qmp3x")
 }
 autoplay = "Intro"

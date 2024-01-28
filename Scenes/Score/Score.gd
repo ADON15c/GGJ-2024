@@ -15,7 +15,7 @@ func _process(delta):
 func _on_fail():
 	health -= 1;
 	if health == 0:
-		get_tree().change_scene_to_file("res://Scenes/Main/Main.tscn")
+		get_tree().change_scene_to_file("res://Scenes/Outro/Outro.tscn")
 func _on_success():
 	game_state.score += 1;
 	if (game_state.score % health_bonus) == 0:

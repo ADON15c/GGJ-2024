@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dak8hh4x7eg3h"]
+[gd_scene load_steps=14 format=3 uid="uid://dak8hh4x7eg3h"]
 
 [ext_resource type="Script" path="res://Scenes/Game/Game.gd" id="1_nhk6d"]
 [ext_resource type="PackedScene" uid="uid://bssrbj1155wrh" path="res://Scenes/QuickTimePlayer/QuickTimePlayer.tscn" id="1_s1w0o"]
@@ -7,6 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://c6gfch3ytf4u5" path="res://Scenes/Astronaut/Astronaut.tscn" id="3_1lj40"]
 [ext_resource type="PackedScene" uid="uid://qnje3p1fnjrw" path="res://Scenes/Health/Health.tscn" id="3_kmyce"]
 [ext_resource type="Texture2D" uid="uid://dre87dgyc3eto" path="res://Assets/Sprites/Moon.png" id="3_kugsw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jt4oo"]
+atlas = ExtResource("3_kugsw")
+region = Rect2(0, 0, 640, 360)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t2rij"]
 atlas = ExtResource("3_kugsw")
@@ -71,9 +75,16 @@ z_index = -100
 position = Vector2(320, 180)
 texture = ExtResource("2_5per3")
 
+[node name="Mooned" type="Sprite2D" parent="."]
+position = Vector2(320, 180)
+texture = SubResource("AtlasTexture_jt4oo")
+
 [node name="Moon" type="AnimatedSprite2D" parent="."]
+visible = false
 position = Vector2(320, 180)
 sprite_frames = SubResource("SpriteFrames_fdbia")
+frame = 3
+frame_progress = 0.48889
 
 [node name="QuickTimePlayer" parent="." instance=ExtResource("1_s1w0o")]
 position = Vector2(320, 200)
