@@ -89,27 +89,23 @@ offset = Vector2(0, 8.5)
 [node name="Left Leg" type="Sprite2D" parent="Body"]
 z_index = -3
 position = Vector2(-11.5, 30)
-rotation = 0.872665
 texture = SubResource("AtlasTexture_wlvkj")
 offset = Vector2(0, 13)
 
 [node name="Lower" type="Sprite2D" parent="Body/Left Leg"]
 z_index = 1
 position = Vector2(0, 22)
-rotation = 0.698132
 texture = SubResource("AtlasTexture_15l4f")
 offset = Vector2(0, 10)
 
 [node name="Right Leg" type="Sprite2D" parent="Body"]
 z_index = -3
 position = Vector2(11.5, 30)
-rotation = -1.23918
 texture = SubResource("AtlasTexture_p0l1b")
 offset = Vector2(0, 13)
 
 [node name="Lower" type="Sprite2D" parent="Body/Right Leg"]
 z_index = 1
 position = Vector2(0, 22)
-rotation = 1.16022
 texture = SubResource("AtlasTexture_dlx6n")
 offset = Vector2(0, 10)

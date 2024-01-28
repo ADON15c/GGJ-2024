@@ -17,5 +17,3 @@ position = Vector2(321, 301)
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(318, 182)
 texture = ExtResource("3_kugsw")
-
-[connection signal="move_made" from="QuickTimePlayer" to="Astronaut" method="_on_quick_time_player_move_made"]

@@ -14,7 +14,7 @@ const ARM_POSES : Array[Vector2] = [
 const LEG_POSES : Array[Vector2] = [
 	Vector2(0, 0),
 	Vector2(70, 60),
-	Vector2(55, 40)
+	Vector2(10, -90)
 ]
 
 @onready var body : Sprite2D = $"Body"
@@ -30,6 +30,8 @@ const LEG_POSES : Array[Vector2] = [
 
 var pose : Vector4i = Vector4i(0,0,0,0)
 
+func _ready():
+	set_pose(Vector4i(0, 0, 0, 0), 0)
 
 func move_limb(limb : Sprite2D, new_rotation : float, dt : float):
 	create_tween().tween_property(limb, "rotation_degrees", new_rotation, dt).set_trans(Tween.TRANS_CUBIC)
