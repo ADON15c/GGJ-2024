@@ -22,7 +22,7 @@ func _ready():
 
 func _process(delta):
 	for pose in poses:
-		pose.pos += delta/ max(20 - (game_state.score/3), 12)
+		pose.pos += delta/ max(20 - (game_state.score/2), 10)
 
 
 func _input(event):
@@ -44,7 +44,7 @@ func spawn_pose():
 	pose.pose = Vector4(randi_range(0,2), randi_range(0,2), randi_range(0,2) ,randi_range(0,2))
 	pose.start = $"Letter Start Marker".position
 	pose.end = $"Letter End Marker".position
-	pose.fail_pos = 1.05
+	pose.fail_pos = 1.15
 	pose.success.connect(success)
 	pose.failed.connect(failure);
 	
@@ -67,6 +67,9 @@ func success(pose):
 func failure():
 	poses.remove_at(0)
 	pose_failure.emit();
+	
+	if poses.size() >= 1:
+		poses[0]._on_made_available();
 
 func changed_pose():
 	pose_changed.emit(current_pose)
