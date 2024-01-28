@@ -29,7 +29,7 @@ const LEG_POSES : Array[Vector2] = [
 @onready var right_lower_leg : Sprite2D = $"Body/Right Leg/Lower"
 
 var pose : Vector4i = Vector4i(0,0,0,0)
-
+ 
 func _ready():
 	set_pose(Vector4i(0, 0, 0, 0), 0)
 

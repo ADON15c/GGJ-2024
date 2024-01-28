@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://c88gi5xu1erom" path="res://Assets/Sprites/Hearts.png" id="2_syfps"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yj068"]
+resource_local_to_scene = true
 atlas = ExtResource("2_syfps")
 region = Rect2(0, 0, 16, 16)
 
