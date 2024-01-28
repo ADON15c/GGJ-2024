@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://c6gfch3ytf4u5" path="res://Scenes/Astronaut/Astronaut.tscn" id="2_t35yq"]
 
 [node name="Pose" type="Node2D"]
+modulate = Color(1, 1, 1, 0.372549)
 script = ExtResource("1_aq47b")
 
 [node name="Astronaut" parent="." instance=ExtResource("2_t35yq")]
