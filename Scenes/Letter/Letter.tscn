@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://csrwaale77c60"]
+
+[ext_resource type="Script" path="res://Scenes/Letter/Letter.gd" id="1_tdqqs"]
+[ext_resource type="Texture2D" uid="uid://c1frar5rgky5t" path="res://Assets/Sprites/letters.png" id="2_n3nfi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_adrdo"]
+atlas = ExtResource("2_n3nfi")
+region = Rect2(0, 0, 32, 32)
+
+[node name="Letter" type="Node2D"]
+script = ExtResource("1_tdqqs")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_adrdo")

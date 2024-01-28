@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://bssrbj1155wrh"]
+[gd_scene load_steps=4 format=3 uid="uid://bssrbj1155wrh"]
 
 [ext_resource type="Script" path="res://Scenes/QuickTimePlayer/QuickTimePlayer.gd" id="1_fgdn7"]
+[ext_resource type="FontFile" uid="uid://c0hd51nplijps" path="res://Assets/Fonts/PeaberryBase.woff" id="2_200u5"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_wme7w"]
+font = ExtResource("2_200u5")
 
 [node name="QuickTimePlayer" type="Node2D"]
 script = ExtResource("1_fgdn7")
@@ -18,5 +22,12 @@ offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
 text = "L M N O P Q R S T U V W X Y Z"
+label_settings = SubResource("LabelSettings_wme7w")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Letter Start Marker" type="Node2D" parent="."]
+position = Vector2(250, 0)
+
+[node name="Letter End Marker" type="Node2D" parent="."]
+position = Vector2(-250, 0)
