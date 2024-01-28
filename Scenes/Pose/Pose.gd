@@ -20,7 +20,8 @@ signal failed
 
 
 func _ready():
-	$Label.text = str(pose.x) + "," + str(pose.y) + "," + str(pose.z) + "," + str(pose.w)
+	print(pose)
+	$Astronaut.set_pose(pose, 0.1)
 	pos = pos
 
 func hit():

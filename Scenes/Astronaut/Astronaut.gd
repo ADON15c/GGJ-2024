@@ -6,6 +6,17 @@ const LEG_CONSTRAINT : Vector2 = Vector2(-20, 65)
 const LOWER_LEG_CONSTRAINT : Vector2 = Vector2(-90, 90)
 const BODY_CONSTRAINT : Vector2 = Vector2(-30, 30)
 
+const ARM_POSES : Array[Vector2] = [
+	Vector2(140, 105),
+	Vector2(90, 270),
+	Vector2(80, 0)
+]
+const LEG_POSES : Array[Vector2] = [
+	Vector2(0, 0),
+	Vector2(70, 60),
+	Vector2(55, 40)
+]
+
 @onready var body : Sprite2D = $"Body"
 @onready var left_arm : Sprite2D = $"Body/Left Arm"
 @onready var left_lower_arm : Sprite2D = $"Body/Left Arm/Lower"
@@ -26,6 +37,7 @@ const BODY_CONSTRAINT : Vector2 = Vector2(-30, 30)
 @onready var all_limbs : Array[Sprite2D] = limbs + lower_limbs
 
 @export var limb_resources : Array[Limb]
+var pose : Vector4i = Vector4i(0,0,0,0)
 
 var selected_limb_idx : int = 0
 
@@ -57,3 +69,15 @@ func move_limb(limb : Sprite2D, new_rotation : float, dt : float):
 
 func _on_quick_time_player_move_made():
 	new_pose(1)
+
+func set_pose(new_pose : Vector4i, dt : float):
+	pose = new_pose
+	
+	move_limb(left_arm, ARM_POSES[new_pose.x].x, dt)
+	move_limb(left_lower_arm, ARM_POSES[new_pose.x].y, dt)
+	move_limb(right_arm, -ARM_POSES[new_pose.y].x, dt)
+	move_limb(right_lower_arm, -ARM_POSES[new_pose.y].y, dt)
+	move_limb(left_leg, LEG_POSES[new_pose.z].x, dt)
+	move_limb(left_lower_leg, LEG_POSES[new_pose.z].y, dt)
+	move_limb(right_leg, -LEG_POSES[new_pose.w].x, dt)
+	move_limb(right_lower_leg, -LEG_POSES[new_pose.w].y, dt)

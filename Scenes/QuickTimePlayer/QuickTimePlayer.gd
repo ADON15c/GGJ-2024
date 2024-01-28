@@ -13,6 +13,7 @@ var current_pose : Vector4i:
 		$Label.text = str(current_pose.x) + "," + str(current_pose.y) + "," + str(current_pose.z) + "," + str(current_pose.w)
 		changed_pose()
 
+signal pose_changed(new_pose : Vector4i)
 
 func _ready():
 	$Timer.timeout.connect(func(): spawn_pose())
@@ -22,7 +23,7 @@ func _process(delta):
 		letter.pos += delta/2
 	
 	for pose in poses:
-		pose.pos += delta/10
+		pose.pos += delta/20
 
 func _input(event):
 	if event is InputEventKey and event.is_pressed() && !event.is_echo():
@@ -85,5 +86,6 @@ func delete_pose():
 	poses.remove_at(0)
 
 func changed_pose():
+	pose_changed.emit(current_pose)
 	if poses.size() > 0 and current_pose == poses[0].pose:
 		poses[0].hit()

@@ -1,15 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dtyqat7ix8xuv"]
+[gd_scene load_steps=3 format=3 uid="uid://dtyqat7ix8xuv"]
 
 [ext_resource type="Script" path="res://Scenes/Pose/Pose.gd" id="1_aq47b"]
-[ext_resource type="FontFile" uid="uid://c0hd51nplijps" path="res://Assets/Fonts/PeaberryBase.woff" id="2_cuut7"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_7re5e"]
-font = ExtResource("2_cuut7")
+[ext_resource type="PackedScene" uid="uid://c6gfch3ytf4u5" path="res://Scenes/Astronaut/Astronaut.tscn" id="2_t35yq"]
 
 [node name="Pose" type="Node2D"]
 script = ExtResource("1_aq47b")
 
-[node name="Label" type="Label" parent="."]
-offset_right = 40.0
-offset_bottom = 23.0
-label_settings = SubResource("LabelSettings_7re5e")
+[node name="Astronaut" parent="." instance=ExtResource("2_t35yq")]
